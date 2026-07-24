@@ -98,4 +98,12 @@
     <ClCompileDependsOn>MarkupCompilePass1;MarkupCompilePass2;$(ClCompileDependsOn)</ClCompileDependsOn>
   </PropertyGroup>
   <Target Name="LinguaMeshGenerateXaml" BeforeTargets="ClCompile" DependsOnTargets="MarkupCompilePass1;MarkupCompilePass2" />
+  <Target Name="LinguaMeshDumpXamlProjection" BeforeTargets="ClCompile"
+          DependsOnTargets="MarkupCompilePass1;MarkupCompilePass2"
+          Condition="'$(DumpXamlProjection)'=='true'">
+    <ReadLinesFromFile File="$(XamlGeneratedOutputPath)src\winui\App.xaml.g.h">
+      <Output TaskParameter="Lines" ItemName="LinguaMeshAppXamlLines" />
+    </ReadLinesFromFile>
+    <Message Importance="high" Text="Generated App.xaml.g.h: @(LinguaMeshAppXamlLines)" />
+  </Target>
 </Project>
