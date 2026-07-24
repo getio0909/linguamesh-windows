@@ -1,5 +1,20 @@
 # Implementation Status
 
+## 2026-07-24 — Windows Core compatibility pin alignment
+
+Assumption: Core `9e69d01cbae1ca0421923e059aa3252c4ecbe1be` preserves the Windows
+ABI-1 typed host-secret contract while adding Linux-only storage coverage; this checkpoint
+updates only the immutable workflow input and does not claim Windows UI or device evidence.
+
+- `.github/workflows/native.yml` now checks out Core
+  `9e69d01cbae1ca0421923e059aa3252c4ecbe1be` and localization
+  `7fd210692bb269ef52f7453bfeb2b0f0759b1d4c`.
+- The portable Foundation/source-boundary, CMake Release, and CTest checks remain the local
+  validation path. Windows MSBuild, WinUI runtime, UI automation, Credential Locker,
+  accessibility, signing, and generated-wrapper conformance require hosted Windows evidence.
+- The release remains `unreleased` until the outstanding Windows-only, cross-client, signing,
+  rollback, and manual acceptance gates are verified.
+
 ## 2026-07-24 — Windows C++/WinRT reference slice checkpoint
 
 Assumption: the current Windows slice is a bounded prerelease reference surface; it proves
