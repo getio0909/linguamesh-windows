@@ -4,7 +4,7 @@
 
 namespace winrt::LinguaMesh::implementation {
 
-struct App final : AppT<App> {
+struct App : AppT<App> {
     App() = default;
     void OnLaunched(Microsoft::UI::Xaml::LaunchActivatedEventArgs const& arguments);
 };

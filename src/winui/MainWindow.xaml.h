@@ -5,7 +5,7 @@
 
 namespace winrt::LinguaMesh::implementation {
 
-struct MainWindow final : MainWindowT<MainWindow> {
+struct MainWindow : MainWindowT<MainWindow> {
     MainWindow();
 
     void TranslateButton_Click(winrt::Windows::Foundation::IInspectable const& sender,

@@ -85,9 +85,6 @@
     <ClInclude Include="include\linguamesh\windows\app_model.hpp" />
     <ClInclude Include="include\linguamesh\windows\core_bridge.hpp" />
     <ClInclude Include="include\linguamesh\windows\credential_store.hpp" />
-    <Midl Include="src\winui\App.idl">
-      <DependentUpon>App.xaml</DependentUpon>
-    </Midl>
     <Midl Include="src\winui\MainWindow.idl">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Midl>
