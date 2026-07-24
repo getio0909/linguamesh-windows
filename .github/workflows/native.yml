@@ -63,6 +63,11 @@ jobs:
           cmake -S . -B out/reference -G "Visual Studio 17 2022" -A x64
           cmake --build out/reference --config Release --parallel
           ctest --test-dir out/reference -C Release --output-on-failure
+      - name: Inspect generated XAML projections
+        shell: pwsh
+        run: |
+          msbuild LinguaMesh.Windows.vcxproj /restore /t:MarkupCompilePass1 /p:Configuration=Debug /p:Platform=x64
+          Get-ChildItem -Path "obj\x64\Debug\Generated Files" -Recurse -Filter *.g.h | ForEach-Object { Write-Output "--- $($_.FullName)"; Get-Content $_.FullName }
       - name: Build WinUI Debug
         shell: pwsh
         run: msbuild LinguaMesh.Windows.sln /restore /m /p:Configuration=Debug /p:Platform=x64
