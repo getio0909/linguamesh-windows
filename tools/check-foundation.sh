@@ -34,6 +34,8 @@ required_files=(
   src/winui/MainWindow.xaml
   docs/adr/0002-windows-native-vertical-slice.md
   tools/check-windows-source.py
+  tests/core_wrapper_smoke.cpp
+  tools/test-pinned-core-wrapper.ps1
 )
 
 for path in "${required_files[@]}"; do

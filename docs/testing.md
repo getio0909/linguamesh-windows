@@ -29,6 +29,9 @@ msbuild LinguaMesh.Windows.sln /p:Configuration=Release /p:Platform=x64
 ```
 
 The Windows workflow runs the portable tests and the Debug/Release project
-builds. UI automation, high contrast, keyboard access, ABI compatibility, and
-MSIX smoke tests remain explicit evidence gates; a successful CMake test is not
-evidence for those gates.
+builds. The native job also checks out the immutable Core and runs
+`tools/test-pinned-core-wrapper.ps1`, which builds the pinned Rust FFI and
+executes the Windows C++20 RAII wrapper smoke before the WinUI build. UI
+automation, high contrast, keyboard access, and MSIX runtime smoke tests remain
+explicit evidence gates; a successful CMake or wrapper smoke is not evidence
+for those gates.

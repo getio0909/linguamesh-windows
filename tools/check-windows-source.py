@@ -21,6 +21,8 @@ REQUIRED = (
     "src/winui/App.xaml",
     "src/winui/MainWindow.xaml",
     "docs/adr/0002-windows-native-vertical-slice.md",
+    "tests/core_wrapper_smoke.cpp",
+    "tools/test-pinned-core-wrapper.ps1",
 )
 
 
