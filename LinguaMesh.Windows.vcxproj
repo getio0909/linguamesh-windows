@@ -74,6 +74,9 @@
     <ClCompile Include="src\platform\credential_store.cpp" />
     <ClCompile Include="src\platform\windows_credential_store.cpp" />
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="$(GeneratedFilesDir)XamlLibMetadataProvider.g.cpp" />
+    <ClCompile Include="$(GeneratedFilesDir)XamlTypeInfo.Impl.g.cpp" />
+    <ClCompile Include="$(GeneratedFilesDir)XamlTypeInfo.g.cpp" />
     <ClInclude Include="src\winui\App.xaml.h">
       <DependentUpon>App.xaml</DependentUpon>
     </ClInclude>
