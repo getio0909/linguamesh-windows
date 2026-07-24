@@ -10,8 +10,12 @@ updates only the immutable workflow input and does not claim Windows UI or devic
   `9e69d01cbae1ca0421923e059aa3252c4ecbe1be` and localization
   `7fd210692bb269ef52f7453bfeb2b0f0759b1d4c`.
 - The portable Foundation/source-boundary, CMake Release, and CTest checks remain the local
-  validation path. Windows MSBuild, WinUI runtime, UI automation, Credential Locker,
-  accessibility, signing, and generated-wrapper conformance require hosted Windows evidence.
+  validation path. Push Foundation run `30104759193` passed; Native Windows run `30104758711`
+  passed the portable C++ job plus Windows Debug/Release WinUI and unsigned MSIX preparation
+  while consuming the updated Core pin.
+- This hosted evidence covers build and packaging preparation only; Windows UI runtime,
+  UI automation, Credential Locker/Password Vault behavior, accessibility, signing, and
+  generated-wrapper conformance remain unverified.
 - The release remains `unreleased` until the outstanding Windows-only, cross-client, signing,
   rollback, and manual acceptance gates are verified.
 
