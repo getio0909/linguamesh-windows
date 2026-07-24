@@ -1,5 +1,28 @@
 # Implementation Status
 
+## 2026-07-24 — Pinned Core C++ wrapper conformance smoke
+
+Assumption: the hosted Windows runner is the authoritative environment for MSVC and
+Windows SDK checks because this Linux host has no `pwsh` or Visual Studio toolchain.
+This checkpoint verifies the pinned Core C++ wrapper ABI and a bounded desktop lease
+flow; it does not claim complete Windows application integration.
+
+- Windows code head `718ee51cdeb774f6150eb1e2a1da54a04fd219fe` checks out Core
+  `9e69d01cbae1ca0421923e059aa3252c4ecbe1be` and localization
+  `7fd210692bb269ef52f7453bfeb2b0f0759b1d4c` before running the wrapper smoke.
+- The smoke builds `linguamesh-ffi` with locked Rust dependencies, compiles the C++20
+  RAII wrapper with MSVC, checks ABI/protocol compatibility, exercises a Windows-style
+  desktop path lease, validates typed malformed-message handling, and shuts down cleanly.
+- Hosted Native Windows run `30106874477` passed the pinned wrapper, source-boundary,
+  portable C++ reference, WinUI Debug, WinUI Release, and unsigned MSIX preparation steps.
+  Foundation run `30106874484` passed.
+- Local `./tools/check-foundation.sh`, `python3 tools/check-windows-source.py`, CMake
+  Release/CTest (1/1), and `git diff --check` passed. Local PowerShell execution is
+  unavailable; hosted evidence is authoritative for the Windows script.
+- Windows UI runtime, UI automation, PasswordVault behavior, accessibility, generated
+  C++/WinRT projection, device coverage, signing, rollback, cross-client parity, and
+  stable-release authorization remain open; release status stays `unreleased`.
+
 ## 2026-07-24 — Windows Core compatibility pin alignment
 
 Assumption: Core `9e69d01cbae1ca0421923e059aa3252c4ecbe1be` preserves the Windows
