@@ -54,6 +54,8 @@ jobs:
           persist-credentials: false
       - name: Set up Rust
         uses: dtolnay/rust-toolchain@d0befba8b9ddf874327619e84c39b094edd58b66
+      - name: Set up MSVC environment
+        uses: ilammy/msvc-dev-cmd@0b201ec74fa43914dc39ae48a89fd1d8cb592756
       - name: Validate pinned Core C++ wrapper
         shell: pwsh
         run: ./tools/test-pinned-core-wrapper.ps1 -CoreRoot linguamesh-core -ExpectedCoreRevision $env:CORE_REVISION
