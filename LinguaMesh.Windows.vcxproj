@@ -7,6 +7,11 @@
     <MinimumVisualStudioVersion>17.9</MinimumVisualStudioVersion>
     <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
     <WindowsAppSDKVersion>1.6.250205002</WindowsAppSDKVersion>
+    <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
+    <WindowsTargetPlatformMinVersion>10.0.19041.0</WindowsTargetPlatformMinVersion>
+    <UseWinUI>true</UseWinUI>
+    <DesktopCompatible>true</DesktopCompatible>
+    <CppWinRTRootNamespaceAutoMerge>true</CppWinRTRootNamespaceAutoMerge>
   </PropertyGroup>
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
@@ -69,6 +74,7 @@
     <ClCompile Include="src\app\app_model.cpp" />
     <ClCompile Include="src\platform\credential_store.cpp" />
     <ClCompile Include="src\platform\windows_credential_store.cpp" />
+    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
     <ClInclude Include="src\winui\App.xaml.h">
       <DependentUpon>App.xaml</DependentUpon>
     </ClInclude>
@@ -90,6 +96,7 @@
   <PropertyGroup>
     <IntDir>$(BaseIntermediateOutputPath)$(Platform)\$(Configuration)\</IntDir>
     <OutDir>$(SolutionDir)out\$(Platform)\$(Configuration)\</OutDir>
+    <XamlGeneratedOutputPath>$(IntDir)Generated Files\</XamlGeneratedOutputPath>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <PropertyGroup>
