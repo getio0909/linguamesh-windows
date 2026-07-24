@@ -78,4 +78,7 @@
     <OutDir>$(SolutionDir)out\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <PropertyGroup>
+    <ClCompileDependsOn>MarkupCompilePass1;MarkupCompilePass2;$(ClCompileDependsOn)</ClCompileDependsOn>
+  </PropertyGroup>
 </Project>
