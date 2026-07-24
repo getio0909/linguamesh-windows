@@ -81,4 +81,5 @@
   <PropertyGroup>
     <ClCompileDependsOn>MarkupCompilePass1;MarkupCompilePass2;$(ClCompileDependsOn)</ClCompileDependsOn>
   </PropertyGroup>
+  <Target Name="LinguaMeshGenerateXaml" BeforeTargets="ClCompile" DependsOnTargets="MarkupCompilePass1;MarkupCompilePass2" />
 </Project>
