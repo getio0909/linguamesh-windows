@@ -76,7 +76,6 @@
     <ClCompile Include="$(GeneratedFilesDir)XamlLibMetadataProvider.g.cpp" />
     <ClCompile Include="$(GeneratedFilesDir)XamlTypeInfo.Impl.g.cpp" />
     <ClCompile Include="$(GeneratedFilesDir)XamlTypeInfo.g.cpp" />
-    <ClCompile Include="$(XamlGeneratedOutputPath)XamlMetaDataProvider.cpp" />
     <ClInclude Include="src\winui\App.xaml.h">
       <DependentUpon>App.xaml</DependentUpon>
     </ClInclude>
@@ -101,7 +100,11 @@
   <PropertyGroup>
     <ClCompileDependsOn>MarkupCompilePass1;MarkupCompilePass2;$(ClCompileDependsOn)</ClCompileDependsOn>
   </PropertyGroup>
-  <Target Name="LinguaMeshGenerateXaml" BeforeTargets="ClCompile" DependsOnTargets="MarkupCompilePass1;MarkupCompilePass2" />
+  <Target Name="LinguaMeshGenerateXaml" BeforeTargets="ClCompile" DependsOnTargets="MarkupCompilePass1;MarkupCompilePass2">
+    <ItemGroup>
+      <ClCompile Include="$(XamlGeneratedOutputPath)XamlMetaDataProvider.cpp" />
+    </ItemGroup>
+  </Target>
   <Target Name="LinguaMeshDumpXamlProjection" BeforeTargets="ClCompile"
           DependsOnTargets="MarkupCompilePass1;MarkupCompilePass2"
           Condition="'$(DumpXamlProjection)'=='true'">
