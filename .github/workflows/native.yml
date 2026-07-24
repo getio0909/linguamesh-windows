@@ -65,7 +65,7 @@ jobs:
           ctest --test-dir out/reference -C Release --output-on-failure
       - name: Build WinUI Debug
         shell: pwsh
-        run: msbuild LinguaMesh.Windows.sln /restore /m /p:Configuration=Debug /p:Platform=x64 /p:DumpXamlProjection=true
+        run: msbuild LinguaMesh.Windows.sln /restore /m /p:Configuration=Debug /p:Platform=x64
       - name: Build WinUI Release and MSIX
         shell: pwsh
         run: msbuild LinguaMesh.Windows.sln /restore /m /p:Configuration=Release /p:Platform=x64 /p:AppxPackageSigningEnabled=false
