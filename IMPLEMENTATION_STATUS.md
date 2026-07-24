@@ -1,5 +1,27 @@
 # Implementation Status
 
+## 2026-07-24 — Windows C++/WinRT reference slice checkpoint
+
+Assumption: the current Windows slice is a bounded prerelease reference surface; it proves
+portable state/event and SecretRef contracts locally, while WinUI/MSIX and Windows-only
+integration remain hosted evidence gates.
+
+- Windows code head `69cad67dbec2743a2ce91d9344fd916ebb201012` contains the native C++20
+  `AppModel`, deterministic fake bridge, PasswordVault adapter, WinUI/XAML shell, IDL runtime
+  class, and portable reference tests. The fake bridge is network-free and never requires a
+  paid credential.
+- Local Foundation/source-boundary checks, CMake Release build, CTest (1/1), and `git diff --check`
+  pass. Hosted push run `30090288192` passed both the portable C++ job and the WinUI/MSIX job;
+  Foundation run `30090288187` passed.
+- Hosted Debug and Release WinUI builds compiled and linked, generated XAML/PRI resources, and
+  completed unsigned MSIX preparation. The run emitted only existing toolchain warnings (WinUI
+  `GetCurrentTime` macro, missing ATL library path, and the GitHub Actions Node 20 notice).
+- This proves build and packaging preparation only; it does not claim Windows UI runtime,
+  UI automation, Credential Locker/Password Vault behavior, accessibility, signing, or generated
+  Core-wrapper conformance.
+- Provider profiles, document workflows, routing, history, cross-client parity, and stable
+  release remain open; release status stays `unreleased`.
+
 ## 2026-07-24 — Windows native reference vertical slice
 
 Assumption: the first Windows checkpoint can verify the native state/event and
@@ -39,16 +61,16 @@ Vault, accessibility, MSIX output, signing, and generated Core-wrapper
 conformance are not claimed until the Windows workflow completes them. Provider
 profiles, document workflows, routing, history, and stable release remain open.
 
-Status date: 2026-07-17
+## Historical foundation checkpoint — 2026-07-17
 
-## Implemented
+### Initially implemented
 
 - Repository policies and Windows role boundaries.
 - Pinned reference to the authoritative global goal.
 - Foundation-only validation script and GitHub Actions workflow.
 - Architecture, testing, and release guidance.
 
-## Not implemented
+### Initially not implemented
 
 - Visual Studio solution, Windows application projects, or package identity.
 - WinUI 3 UI, navigation, accessibility, theme, or locale switching.
@@ -57,7 +79,7 @@ Status date: 2026-07-17
 - Native unit, wrapper, UI automation, accessibility, or packaging tests.
 - MSIX, portable package, signing, or release workflow.
 
-## Evidence
+### Initial evidence
 
 Validated locally on 2026-07-17:
 
