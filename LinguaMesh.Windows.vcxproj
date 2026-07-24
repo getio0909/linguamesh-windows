@@ -76,7 +76,7 @@
     <ClCompile Include="$(GeneratedFilesDir)XamlLibMetadataProvider.g.cpp" />
     <ClCompile Include="$(GeneratedFilesDir)XamlTypeInfo.Impl.g.cpp" />
     <ClCompile Include="$(GeneratedFilesDir)XamlTypeInfo.g.cpp" />
-    <ClCompile Include="$(GeneratedFilesDir)XamlMetaDataProvider.cpp" />
+    <ClCompile Include="$(XamlGeneratedOutputPath)XamlMetaDataProvider.cpp" />
     <ClInclude Include="src\winui\App.xaml.h">
       <DependentUpon>App.xaml</DependentUpon>
     </ClInclude>
