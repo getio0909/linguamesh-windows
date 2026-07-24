@@ -68,7 +68,6 @@
     <ClCompile Include="src\winui\MainWindow.xaml.cpp">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </ClCompile>
-    <ClCompile Include="src\winui\main.cpp" />
     <ClCompile Include="src\core\core_bridge.cpp" />
     <ClCompile Include="src\app\app_model.cpp" />
     <ClCompile Include="src\platform\credential_store.cpp" />
@@ -77,6 +76,7 @@
     <ClCompile Include="$(GeneratedFilesDir)XamlLibMetadataProvider.g.cpp" />
     <ClCompile Include="$(GeneratedFilesDir)XamlTypeInfo.Impl.g.cpp" />
     <ClCompile Include="$(GeneratedFilesDir)XamlTypeInfo.g.cpp" />
+    <ClCompile Include="$(GeneratedFilesDir)XamlMetaDataProvider.cpp" />
     <ClInclude Include="src\winui\App.xaml.h">
       <DependentUpon>App.xaml</DependentUpon>
     </ClInclude>
