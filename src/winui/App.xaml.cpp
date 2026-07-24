@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "App.xaml.h"
-#include "App.g.cpp"
 #include "MainWindow.xaml.h"
 
 namespace winrt::LinguaMesh::implementation {

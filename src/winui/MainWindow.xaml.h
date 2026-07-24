@@ -1,6 +1,6 @@
 #pragma once
 
-#include "MainWindow.xaml.g.h"
+#include "MainWindow.g.h"
 #include "linguamesh/windows/app_model.hpp"
 
 namespace winrt::LinguaMesh::implementation {
