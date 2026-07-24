@@ -59,14 +59,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <ClCompile Include="src\winui\App.xaml.cpp" />
-    <ClCompile Include="src\winui\MainWindow.xaml.cpp" />
+    <ClCompile Include="src\winui\App.xaml.cpp">
+      <DependentUpon>App.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="src\winui\MainWindow.xaml.cpp">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </ClCompile>
     <ClCompile Include="src\core\core_bridge.cpp" />
     <ClCompile Include="src\app\app_model.cpp" />
     <ClCompile Include="src\platform\credential_store.cpp" />
     <ClCompile Include="src\platform\windows_credential_store.cpp" />
-    <ClInclude Include="src\winui\App.xaml.h" />
-    <ClInclude Include="src\winui\MainWindow.xaml.h" />
+    <ClInclude Include="src\winui\App.xaml.h">
+      <DependentUpon>App.xaml</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="src\winui\MainWindow.xaml.h">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </ClInclude>
     <ClInclude Include="src\winui\pch.h" />
     <ClInclude Include="include\linguamesh\windows\app_model.hpp" />
     <ClInclude Include="include\linguamesh\windows\core_bridge.hpp" />
