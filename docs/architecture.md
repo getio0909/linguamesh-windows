@@ -10,4 +10,13 @@ Core polling and other blocking work must run on a dedicated non-UI execution co
 
 ## Current boundary
 
-No solution, project, wrapper, or runtime code exists at this checkpoint. This document defines constraints and does not claim a Windows implementation.
+The repository now contains a C++20 reference slice and a WinUI 3 application
+surface. `AppModel` owns immutable state, model selection, locale changes,
+credential references, streaming output, cancellation, and typed error keys.
+`FakeCoreBridge` is deterministic and network-free; the production replacement
+must be the generated Core C++ wrapper. `WindowsCredentialStore` uses
+`PasswordVault` and never exposes a credential value through application state.
+
+The portable CMake target validates the model and storage contracts on Linux or
+Windows. The Visual Studio project is the authoritative WinUI/MSIX build; its
+SDK, UI automation, package identity, and signing checks are Windows-only.

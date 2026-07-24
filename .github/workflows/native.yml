@@ -1,0 +1,69 @@
+name: Native Windows
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  CORE_REVISION: 77c6bf426ace65c6bd960120b253e10e59a70a13
+  L10N_REVISION: 7fd210692bb269ef52f7453bfeb2b0f0759b1d4c
+
+jobs:
+  portable-reference:
+    name: Portable C++ reference slice
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out Windows client
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+        with:
+          persist-credentials: false
+      - name: Validate repository foundation
+        run: ./tools/check-foundation.sh
+      - name: Validate Windows source boundary
+        run: python3 tools/check-windows-source.py
+      - name: Build and test portable C++ reference
+        run: |
+          cmake -S . -B out/reference -DCMAKE_BUILD_TYPE=Release
+          cmake --build out/reference --parallel
+          ctest --test-dir out/reference --output-on-failure
+
+  native:
+    name: WinUI 3 and MSIX preparation
+    runs-on: windows-2025
+    steps:
+      - name: Check out Windows client
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+        with:
+          persist-credentials: false
+      - name: Check out pinned Core
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+        with:
+          repository: ${{ github.repository_owner }}/linguamesh-core
+          ref: ${{ env.CORE_REVISION }}
+          path: linguamesh-core
+          persist-credentials: false
+      - name: Check out pinned localization
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+        with:
+          repository: ${{ github.repository_owner }}/linguamesh-l10n
+          ref: ${{ env.L10N_REVISION }}
+          path: linguamesh-l10n
+          persist-credentials: false
+      - name: Validate source boundary
+        shell: pwsh
+        run: python tools/check-windows-source.py
+      - name: Build portable reference tests
+        shell: pwsh
+        run: |
+          cmake -S . -B out/reference -G "Visual Studio 17 2022" -A x64
+          cmake --build out/reference --config Release --parallel
+          ctest --test-dir out/reference -C Release --output-on-failure
+      - name: Build WinUI Debug
+        shell: pwsh
+        run: msbuild LinguaMesh.Windows.sln /restore /m /p:Configuration=Debug /p:Platform=x64
+      - name: Build WinUI Release and MSIX
+        shell: pwsh
+        run: msbuild LinguaMesh.Windows.sln /restore /m /p:Configuration=Release /p:Platform=x64 /p:AppxPackageSigningEnabled=false

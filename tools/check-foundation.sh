@@ -18,6 +18,22 @@ required_files=(
   docs/releasing.md
   .gitignore
   .github/workflows/foundation.yml
+  .github/workflows/native.yml
+  CMakeLists.txt
+  LinguaMesh.Windows.sln
+  LinguaMesh.Windows.vcxproj
+  Package.appxmanifest
+  Assets/LinguaMesh.svg
+  include/linguamesh/windows/app_model.hpp
+  include/linguamesh/windows/core_bridge.hpp
+  include/linguamesh/windows/credential_store.hpp
+  src/app/app_model.cpp
+  src/core/core_bridge.cpp
+  src/platform/windows_credential_store.cpp
+  src/winui/App.xaml
+  src/winui/MainWindow.xaml
+  docs/adr/0002-windows-native-vertical-slice.md
+  tools/check-windows-source.py
 )
 
 for path in "${required_files[@]}"; do
@@ -31,7 +47,12 @@ grep -Fqx 'Central repository: `linguamesh-project`' GLOBAL_GOAL.md
 grep -Fqx "Authoritative SHA-256: \`$expected_goal_sha\`" GLOBAL_GOAL.md
 grep -Fq '`linguamesh-windows`' REPOSITORY_ROLE.md
 
-mapfile -t text_files < <(find . -path ./.git -prune -o -type f -print | sort)
+mapfile -t text_files < <(find . \
+  -path ./.git -prune -o \
+  -path ./out -prune -o \
+  -path ./build -prune -o \
+  -path ./x64 -prune -o \
+  -type f -print | sort)
 if grep -nE '[[:blank:]]+$' "${text_files[@]}"; then
   echo "Trailing whitespace detected." >&2
   exit 1

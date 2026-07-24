@@ -1,24 +1,34 @@
 # Testing
 
-## Available now
+## Portable reference checks
 
 Setup requires only Bash, Git, and standard POSIX utilities. From the repository root run:
 
 ```sh
 ./tools/check-foundation.sh
+python3 tools/check-windows-source.py
+cmake -S . -B out/reference -DCMAKE_BUILD_TYPE=Release
+cmake --build out/reference
+ctest --test-dir out/reference --output-on-failure
 ```
 
-This verifies required foundation files, the global-goal revision pin, repository identity, line endings, and trailing whitespace. It is the only implemented format/lint/test check. There is no Windows build.
+The first command verifies the repository foundation; the second validates the
+native Windows source boundary; the CMake target builds and runs the deterministic
+streaming, cancellation, typed-error, locale, and SecretRef tests without a
+provider credential.
 
-## Planned commands, unavailable now
+## Windows SDK checks
 
-The following command contract is planned but cannot run until `LinguaMesh.sln`, its projects, and a pinned Windows toolchain exist:
+On a Windows 11 runner with Visual Studio 2022, Windows App SDK, and the Windows
+10.0.26100 SDK, run:
 
 ```powershell
-msbuild LinguaMesh.sln /restore /p:Configuration=Debug /p:Platform=x64
-msbuild LinguaMesh.sln /t:ClCompile /p:Configuration=Debug /p:Platform=x64 /p:RunCodeAnalysis=true
-vstest.console.exe .\out\x64\Debug\LinguaMesh.Tests.dll
-msbuild LinguaMesh.sln /p:Configuration=Release /p:Platform=x64
+msbuild LinguaMesh.Windows.sln /restore /p:Configuration=Debug /p:Platform=x64
+msbuild LinguaMesh.Windows.sln /t:ClCompile /p:Configuration=Debug /p:Platform=x64 /p:RunCodeAnalysis=true
+msbuild LinguaMesh.Windows.sln /p:Configuration=Release /p:Platform=x64
 ```
 
-Do not report any of these commands as executed at the foundation checkpoint. Wrapper ownership, UI automation, high contrast, keyboard access, ABI compatibility, and MSIX smoke-test commands must be added when their projects exist.
+The Windows workflow runs the portable tests and the Debug/Release project
+builds. UI automation, high contrast, keyboard access, ABI compatibility, and
+MSIX smoke tests remain explicit evidence gates; a successful CMake test is not
+evidence for those gates.

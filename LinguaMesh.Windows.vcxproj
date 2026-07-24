@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B0BB32D0-8D8B-4C75-9C7B-E2B9E6B3D9CE}</ProjectGuid>
+    <RootNamespace>LinguaMesh</RootNamespace>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <MinimumVisualStudioVersion>17.9</MinimumVisualStudioVersion>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <WindowsAppSDKVersion>1.6.250205002</WindowsAppSDKVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <ApplicationType>Windows Store</ApplicationType>
+    <WindowsPackageType>MSIX</WindowsPackageType>
+    <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
+    <CppWinRTOptimized>true</CppWinRTOptimized>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Import Project="$(MSBuildThisFileDirectory)Directory.Build.props" Condition="Exists('$(MSBuildThisFileDirectory)Directory.Build.props')" />
+  <ItemGroup>
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="$(WindowsAppSDKVersion)" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="src\winui\App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <ApplicationDefinition Include="src\winui\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <ClCompile Include="src\winui\App.xaml.cpp" />
+    <ClCompile Include="src\winui\MainWindow.xaml.cpp" />
+    <ClCompile Include="src\core\core_bridge.cpp" />
+    <ClCompile Include="src\app\app_model.cpp" />
+    <ClCompile Include="src\platform\credential_store.cpp" />
+    <ClCompile Include="src\platform\windows_credential_store.cpp" />
+    <ClInclude Include="src\winui\App.xaml.h" />
+    <ClInclude Include="src\winui\MainWindow.xaml.h" />
+    <ClInclude Include="src\winui\pch.h" />
+    <ClInclude Include="include\linguamesh\windows\app_model.hpp" />
+    <ClInclude Include="include\linguamesh\windows\core_bridge.hpp" />
+    <ClInclude Include="include\linguamesh\windows\credential_store.hpp" />
+    <None Include="Package.appxmanifest" />
+  </ItemGroup>
+  <PropertyGroup>
+    <IntDir>$(BaseIntermediateOutputPath)$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)out\$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>

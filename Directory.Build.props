@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    <CppLanguageStandard>stdcpp20</CppLanguageStandard>
+    <ConformanceMode>true</ConformanceMode>
+    <TreatWarningAsError>true</TreatWarningAsError>
+  </PropertyGroup>
+</Project>
