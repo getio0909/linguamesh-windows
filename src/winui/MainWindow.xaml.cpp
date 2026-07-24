@@ -3,6 +3,7 @@
 #include "MainWindow.g.cpp"
 
 #include <winrt/Microsoft.UI.Dispatching.h>
+#include <winrt/Windows.Foundation.Collections.h>
 #include <winrt/Windows.Foundation.h>
 #include <winrt/base.h>
 

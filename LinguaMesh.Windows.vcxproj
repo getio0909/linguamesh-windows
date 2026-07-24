@@ -57,11 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="src\winui\App.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="src\winui\MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <ClCompile Include="src\winui\App.xaml.cpp">
